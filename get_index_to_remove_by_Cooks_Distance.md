@@ -67,7 +67,7 @@ def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
 
 
 
-Use this code to apply this function :
+To apply ```py get_index_to_remove_by_Cooks_Distance``` function, use this code :
 
 ```py
 # Get the indices of the observations to be removed from the training data
@@ -90,3 +90,5 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
                                 (categorical_pipeline, categorical_features)
                                 )
  ```
+ 
+ 
