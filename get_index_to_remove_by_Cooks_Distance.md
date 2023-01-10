@@ -57,8 +57,7 @@ X_train = X_train.drop(index=index_to_be_removed.values)
 y_train = y_train.drop(index=index_to_be_removed.values)
 ```
 
-Notice that 
-are came from ```py X_train, X_test, y_train, y_test```and ```py preprocessor``` 
+Notice that you can get ```py X_train, X_test, y_train, y_test```and ```py preprocessor``` from :
 
 ```py
 X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=True, train_size=0.8, random_state=42, stratify=X[['smoker']])
