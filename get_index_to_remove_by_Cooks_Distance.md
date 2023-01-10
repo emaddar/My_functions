@@ -94,3 +94,19 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
  To get this plot 
 
 ![COOKS DISTANCE](output.png)
+
+Just add this code **into** the function besfore ```py return ```
+
+```py 
+plt.figure(figsize=(10,6))
+plt.bar(X.index, X['dcooks'])
+plt.xticks(np.arange(0, len(X), step=int(len(X)/10)))
+plt.xlabel('Observation')
+plt.ylabel('Cooks Distance')
+#Plot the line
+plt.hlines(seuil_dcook, xmin=0, xmax=len(X_train), color='r')
+plt.show()
+```
+
+Bon chance
+ 
