@@ -1,5 +1,6 @@
 ```py
 
+
 def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
     # Fit the transformer to the training data
     preprocessor.fit(X_train)
@@ -40,4 +41,21 @@ def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
     #plt.show()
     
     return index_to_be_removed
+```
+
+
+
+
+Use this code to apply this function :
+
+```py
+# Preprocess the data and split it into training and testing sets
+preprocessor, X_train, X_test, y_train, y_test = make_pipeline_to_ML(X,y)
+
+# Get the indices of the observations to be removed from the training data
+index_to_be_removed = get_index_to_remove_by_Cooks_Distance(X_train=X_train, y_train=y_train, preprocessor=preprocessor)
+
+# Remove the observations from the training data
+X_train = X_train.drop(index=index_to_be_removed.values)
+y_train = y_train.drop(index=index_to_be_removed.values)
 ```
