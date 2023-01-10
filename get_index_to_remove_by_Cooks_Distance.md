@@ -1,5 +1,5 @@
-```py
 
+```py
 def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
     """
     This function removes observations from the training data that have high Cook's distance values.
@@ -106,6 +106,24 @@ plt.ylabel('Cooks Distance')
 #Plot the line
 plt.hlines(seuil_dcook, xmin=0, xmax=len(X_train), color='r')
 plt.show()
+```
+
+Packages you may need :
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as stats
+from scipy.stats import shapiro 
+from scipy.stats import kstest
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+from scipy.stats import probplot
+from sklearn.model_selection import train_test_split,GridSearchCV,learning_curve, RandomizedSearchCV, cross_val_score, KFold
+from sklearn.metrics import *
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import OneHotEncoder,StandardScaler,PolynomialFeatures,RobustScaler
+from statsmodels.stats.multicomp import pairwise_tukeyhsd, MultiComparison
 ```
 
 Bon chance
