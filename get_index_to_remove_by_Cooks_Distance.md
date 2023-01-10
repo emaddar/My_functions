@@ -49,9 +49,6 @@ def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
 Use this code to apply this function :
 
 ```py
-# Preprocess the data and split it into training and testing sets
-preprocessor, X_train, X_test, y_train, y_test = make_pipeline_to_ML(X,y)
-
 # Get the indices of the observations to be removed from the training data
 index_to_be_removed = get_index_to_remove_by_Cooks_Distance(X_train=X_train, y_train=y_train, preprocessor=preprocessor)
 
@@ -59,3 +56,17 @@ index_to_be_removed = get_index_to_remove_by_Cooks_Distance(X_train=X_train, y_t
 X_train = X_train.drop(index=index_to_be_removed.values)
 y_train = y_train.drop(index=index_to_be_removed.values)
 ```
+
+Notice that 
+are came from ```py X_train, X_test, y_train, y_test```and ```py preprocessor``` 
+
+```py
+X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=True, train_size=0.8, random_state=42, stratify=X[['smoker']])
+numerical_features = make_column_selector(dtype_include=np.number)
+categorical_features = make_column_selector(dtype_exclude= np.number)
+numerical_pipeline = make_pipeline(StandardScaler(with_mean=False))
+categorical_pipeline = make_pipeline(OneHotEncoder(handle_unknown='ignore'))
+preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
+                                (categorical_pipeline, categorical_features)
+                                )
+ ```
