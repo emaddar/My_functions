@@ -91,4 +91,6 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
                                 )
  ```
  
- 
+ To get this plot 
+
+![COOKS DISTANCE](output.png)
