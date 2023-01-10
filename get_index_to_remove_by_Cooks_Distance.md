@@ -67,7 +67,7 @@ def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
 
 
 
-To apply ```py get_index_to_remove_by_Cooks_Distance``` function, use this code :
+To apply `get_index_to_remove_by_Cooks_Distance` function, use this code :
 
 ```py
 # Get the indices of the observations to be removed from the training data
@@ -78,7 +78,7 @@ X_train = X_train.drop(index=index_to_be_removed.values)
 y_train = y_train.drop(index=index_to_be_removed.values)
 ```
 
-Notice that you can get ```py X_train, X_test, y_train, y_test```and ```py preprocessor``` from :
+Notice that you can get `X_train, X_test, y_train, y_test`and `py preprocessor` from :
 
 ```py
 X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=True, train_size=0.8, random_state=42, stratify=X[['smoker']])
@@ -95,7 +95,7 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
 
 ![COOKS DISTANCE](output.png)
 
-Just add this code **into** the function besfore ```py return ```
+Just add this code **into** the function besfore `py return` 
 
 ```py 
 plt.figure(figsize=(10,6))
