@@ -95,7 +95,7 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
 
 ![COOKS DISTANCE](output.png)
 
-Just add this code **into** the function besfore `py return` 
+Just add this code **into** the function `get_index_to_remove_by_Cooks_Distance` besfore `return` 
 
 ```py 
 plt.figure(figsize=(10,6))
