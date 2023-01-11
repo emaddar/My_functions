@@ -1,4 +1,34 @@
+Packages you may need :
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as stats
+from scipy.stats import shapiro 
+from scipy.stats import kstest
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+from scipy.stats import probplot
+from sklearn.model_selection import train_test_split,GridSearchCV,learning_curve, RandomizedSearchCV, cross_val_score, KFold
+from sklearn.metrics import *
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import OneHotEncoder,StandardScaler,PolynomialFeatures,RobustScaler
+from statsmodels.stats.multicomp import pairwise_tukeyhsd, MultiComparison
+```
 
+Notice that you can get `X_train, X_test, y_train, y_test`and `py preprocessor` from :
+
+```py
+X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=True, train_size=0.8, random_state=42, stratify=X[['smoker']])
+numerical_features = make_column_selector(dtype_include=np.number)
+categorical_features = make_column_selector(dtype_exclude= np.number)
+numerical_pipeline = make_pipeline(StandardScaler(with_mean=False))
+categorical_pipeline = make_pipeline(OneHotEncoder(handle_unknown='ignore'))
+preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
+                                (categorical_pipeline, categorical_features)
+                                )
+ ```
+ 
 ```py
 def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
     """
@@ -60,6 +90,16 @@ def get_index_to_remove_by_Cooks_Distance(X_train, y_train, preprocessor):
     # Select the indices of the observations with Cook's distance values above the threshold
     index_to_be_removed = X[X['dcooks']>seuil_dcook].index
     
+    plt.figure(figsize=(10,6))
+    plt.bar(X.index, X['dcooks'])
+    plt.xticks(np.arange(0, len(X), step=int(len(X)/10)))
+    plt.xlabel('Observation')
+    plt.ylabel('Cooks Distance')
+    #Plot the line
+    plt.hlines(seuil_dcook, xmin=0, xmax=len(X_train), color='r')
+    plt.show()
+
+
     # Return the indices of the observations to be removed
     return index_to_be_removed
 ```
@@ -78,53 +118,12 @@ X_train = X_train.drop(index=index_to_be_removed.values)
 y_train = y_train.drop(index=index_to_be_removed.values)
 ```
 
-Notice that you can get `X_train, X_test, y_train, y_test`and `py preprocessor` from :
 
-```py
-X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=True, train_size=0.8, random_state=42, stratify=X[['smoker']])
-numerical_features = make_column_selector(dtype_include=np.number)
-categorical_features = make_column_selector(dtype_exclude= np.number)
-numerical_pipeline = make_pipeline(StandardScaler(with_mean=False))
-categorical_pipeline = make_pipeline(OneHotEncoder(handle_unknown='ignore'))
-preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
-                                (categorical_pipeline, categorical_features)
-                                )
- ```
- 
- To get this plot 
 
 ![COOKS DISTANCE](output.png)
 
-Just add this code **into** the function `get_index_to_remove_by_Cooks_Distance` besfore `return` 
 
-```py 
-plt.figure(figsize=(10,6))
-plt.bar(X.index, X['dcooks'])
-plt.xticks(np.arange(0, len(X), step=int(len(X)/10)))
-plt.xlabel('Observation')
-plt.ylabel('Cooks Distance')
-#Plot the line
-plt.hlines(seuil_dcook, xmin=0, xmax=len(X_train), color='r')
-plt.show()
-```
 
-Packages you may need :
-```py
-import matplotlib.pyplot as plt
-import numpy as np
-import scipy.stats as stats
-from scipy.stats import shapiro 
-from scipy.stats import kstest
-import pandas as pd
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-from scipy.stats import probplot
-from sklearn.model_selection import train_test_split,GridSearchCV,learning_curve, RandomizedSearchCV, cross_val_score, KFold
-from sklearn.metrics import *
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import OneHotEncoder,StandardScaler,PolynomialFeatures,RobustScaler
-from statsmodels.stats.multicomp import pairwise_tukeyhsd, MultiComparison
-```
 
 Bon chance
  
